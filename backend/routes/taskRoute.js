@@ -1,12 +1,12 @@
 import express from 'express';
 import { addTask, listTasks, editTask, removeTask } from '../controller/taskController.js';
-import { protect } from '../middleware/authMiddleware.js';
+import { protect } from '../middlewares/authMiddleware.js';
 
-const router = express.Router();
+const taskRouter = express.Router();
 
-router.post('/', protect, addTask);
-router.get('/', protect, listTasks);
-router.put('/:id', protect, editTask);
-router.delete('/:id', protect, removeTask);
+taskRouter.post('/', protect, addTask);
+taskRouter.get('/', protect, listTasks);
+taskRouter.put('/:id', protect, editTask);
+taskRouter.delete('/:id', protect, removeTask);
 
-export default router;
+export default taskRouter;

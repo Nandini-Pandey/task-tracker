@@ -2,9 +2,9 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './configuration/db.js'
-import {authRoute} from './routes/authRoute.js'
-import {taskRoute} from './routes/taskRoute.js' 
-import {errorHandles} from './middlewares/errorMiddleware.js'
+import authRouter from './routes/authRoute.js'
+import taskRouter from './routes/taskRoute.js' 
+import {errorHandler} from './middlewares/errorMiddleware.js'
 
 
 // create express app
@@ -23,11 +23,11 @@ app.use(express.json());
 
 
 // routes
-app.use('/api/auth', authRoute)
-app.use('/api/tasks', taskRoute)
+app.use('/api/v1/auth', authRouter) // no need to re write prefixes api/v1/auth 
+app.use('/api/v1/tasks', taskRouter)
 
 // error handling
-app.use(errorHandles)
+app.use(errorHandler)
 
 // start the server   
 app.listen(port, () => {
